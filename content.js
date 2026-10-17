@@ -1,9 +1,10 @@
-/* Bahria Bloom: builds the few extra elements the redesign needs.
+/* Bahria Bloom: builds the few extra elements the redesign needs (CMS and LMS).
    It never touches forms, hidden fields or ASP.NET controls. */
 (function () {
   'use strict';
 
   var doc = document;
+  var isLms = location.hostname === 'lms.bahria.edu.pk';   // AdminLTE site; the CMS is ASP.NET
   var $ = function (sel, root) { return (root || doc).querySelector(sel); };
   var uid = 0;
 
@@ -106,10 +107,9 @@
     overlay.insertBefore(side, overlay.firstChild);
   }
 
-  function greet() {
-    var nameEl = $('#ProfileInfo_lblName'), head = $('#pageHeading');
-    if (!nameEl || !head || $('.lb-greet')) return;
-    var first = (nameEl.textContent || '').trim().split(/\s+/)[0] || '';
+  function greetInto(rawName, parent) {
+    if (!parent || $('.lb-greet')) return;
+    var first = (rawName || '').trim().split(/\s+/)[0] || '';
     if (!first) return;
     first = first.charAt(0).toUpperCase() + first.slice(1).toLowerCase();
     var h = new Date().getHours();
@@ -117,12 +117,22 @@
     var p = doc.createElement('p');
     p.className = 'lb-greet';
     p.textContent = text + first + '.';
-    head.appendChild(p);
+    parent.appendChild(p);
+  }
+
+  function greet() {                                        // CMS dashboard
+    var nameEl = $('#ProfileInfo_lblName');
+    if (nameEl) greetInto(nameEl.textContent, $('#pageHeading'));
+  }
+
+  function greetLms() {                                     // LMS dashboard: name sits in the header's user menu
+    var nameEl = $('.user-menu .hidden-xs');
+    if (nameEl) greetInto(nameEl.textContent, $('.content-header'));
   }
 
   // Faint door behind the signed-in pages, centred in the area right of the side bar
   function backdropDoor() {
-    var content = $('#pageContent');
+    var content = $('#pageContent') || $('.content-wrapper');
     if (!content || $('.bu-door-bg')) return;
     var wrap = doc.createElement('div');
     wrap.innerHTML = door();
@@ -135,17 +145,24 @@
     var bar = $('#sideBar');
     function place() {
       var left = 0;
-      if (bar) { var r = bar.getBoundingClientRect(); if (r.width > 0 && r.right > 0) left = r.right; }
+      if (isLms) left = Math.max(0, content.getBoundingClientRect().left);   // AdminLTE pushes .content-wrapper clear of the menu
+      else if (bar) { var r = bar.getBoundingClientRect(); if (r.width > 0 && r.right > 0) left = r.right; }
       svg.style.left = (left + (window.innerWidth - left) / 2) + 'px';
     }
     place();
     window.addEventListener('resize', place);
     if (window.ResizeObserver) new ResizeObserver(place).observe(content);   // fires when the side bar is toggled
     if (bar) bar.addEventListener('transitionend', place);
+    if (isLms) content.addEventListener('transitionend', place);   // menu slides in/out on small screens
     setTimeout(place, 400);
   }
 
   function init() {
+    if (isLms) {
+      if ($('.main-sidebar')) backdropDoor();
+      if (/\/Dashboard\.php$/i.test(location.pathname)) greetLms();
+      return;
+    }
     if ($('.portal-container')) landing();
     else if ($('#BodyPH_btnLogin')) login();
     if ($('#sideBar')) backdropDoor();

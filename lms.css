@@ -1,0 +1,333 @@
+/* ==========================================================================
+   Bahria Bloom — LMS (lms.bahria.edu.pk, an AdminLTE "skin-yellow-light" site)
+
+   Loaded after theme.css, which already supplies the palette tokens, fonts,
+   paper grain, buttons, forms, tables, tabs, pagination, modals and the
+   door/petal pieces. This file only does what the LMS needs on top of that:
+   re-skin AdminLTE's header, side menu, boxes, labels, alerts and footer.
+   ========================================================================== */
+
+/* ---------- Ground: transparent layers so the door can sit behind ---------- */
+html:has(.main-sidebar) body,
+.skin-yellow-light .wrapper,
+.skin-yellow-light .content-wrapper,
+.skin-yellow-light .right-side {
+  background: transparent !important;
+}
+/* Page is flat: no shadows anywhere, same as the signed-in CMS pages */
+html:has(.main-sidebar) *,
+html:has(.main-sidebar) *::before,
+html:has(.main-sidebar) *::after { box-shadow: none !important; }
+
+/* Text colour helpers AdminLTE forces with !important */
+.text-red, .text-danger { color: var(--lb-danger) !important; }
+.text-orange { color: #9a4b00 !important; }
+.text-yellow { color: #8a5a00 !important; }
+.text-green, .text-success { color: #1f6b3d !important; }
+.text-blue, .text-light-blue, .text-aqua { color: var(--lb-link) !important; }
+.text-muted { color: var(--lb-ink-soft) !important; }
+
+.content-wrapper a:not(.btn):not([data-toggle]):not(.label):not(.small-box-footer):not(.list-group-item) {
+  color: var(--lb-link);
+  text-decoration-color: var(--lb-orchid);
+  text-underline-offset: 3px;
+}
+.content-wrapper a:not(.btn):not([data-toggle]):hover { color: var(--lb-plum); }
+
+/* ---------- Header ---------- */
+.skin-yellow-light .main-header .navbar,
+.skin-yellow-light .main-header .logo,
+.skin-yellow-light .main-header .logo:hover,
+.skin-yellow-light .main-header .logo:focus {
+  background: var(--lb-plum) !important;
+  background-image: none !important;
+  border: 0 !important;
+  color: var(--lb-petal) !important;
+}
+/* blossom rule under the header; a pseudo-element so nothing shifts */
+.skin-yellow-light .main-header::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -3px;
+  height: 3px;
+  background: var(--lb-blossom);
+  z-index: 2;
+}
+.skin-yellow-light .main-header .logo {
+  font-family: var(--lb-display) !important;
+  font-weight: 600;
+}
+.main-header .logo img {
+  height: 34px; width: auto; max-width: none;
+  padding: 3px;
+  margin: -3px 8px 0 0;
+  vertical-align: middle;
+  background: var(--lb-sheet);
+  border-radius: 50%;
+}
+.main-header .logo-mini img { margin: -3px 0 0; }
+
+.skin-yellow-light .main-header .navbar .sidebar-toggle,
+.skin-yellow-light .main-header .navbar .nav > li > a,
+.skin-yellow-light .main-header .navbar .navbar-nav > li > a {
+  color: var(--lb-petal) !important;
+  background: transparent !important;
+  font-weight: 700;
+}
+.skin-yellow-light .main-header .navbar .sidebar-toggle:hover,
+.skin-yellow-light .main-header .navbar .nav > li > a:hover,
+.skin-yellow-light .main-header .navbar .nav > .open > a {
+  background: rgba(246, 165, 192, .2) !important;
+}
+.main-header .navbar h4 {
+  color: var(--lb-petal) !important;
+  font-family: var(--lb-display) !important;
+  font-weight: 600;
+  letter-spacing: .01em;
+}
+.main-header .user-image { border: 2px solid var(--lb-blossom); background: var(--lb-sheet); }
+.skin-yellow-light .main-header .navbar .label {
+  background: var(--lb-blossom) !important;
+  color: var(--lb-plum) !important;
+  border: 0;
+}
+
+/* Header dropdowns (user + notifications) */
+.main-header .navbar-nav > .user-menu > .dropdown-menu,
+.main-header .navbar-nav > .notifications-menu > .dropdown-menu {
+  padding: 0 !important;
+  overflow: hidden;
+}
+.skin-yellow-light .main-header .navbar-nav > .user-menu > .dropdown-menu > li.user-header {
+  background: var(--lb-blossom) !important;
+  height: auto;
+  padding: 16px 10px;
+}
+.main-header .user-header > p { color: var(--lb-plum) !important; font-family: var(--lb-display); font-weight: 600; }
+.main-header .user-header > img { border: 3px solid var(--lb-plum); background: var(--lb-sheet); }
+.main-header .user-footer { background: var(--lb-wash) !important; padding: 10px; }
+.main-header .navbar-nav > .notifications-menu > .dropdown-menu > li.header,
+.main-header .navbar-nav > .notifications-menu > .dropdown-menu > li.footer > a {
+  background: var(--lb-petal) !important;
+  color: var(--lb-plum) !important;
+  border: 0 !important;
+}
+.main-header .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a {
+  color: var(--lb-plum) !important;
+  border-bottom: 1px dashed var(--lb-orchid) !important;
+  border-radius: 0;
+}
+.main-header .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a:hover { background: var(--lb-wash) !important; }
+
+/* ---------- Side menu ---------- */
+.skin-yellow-light .main-sidebar {
+  background: #fff3f5 !important;
+  border: 0 !important;
+  border-right: 1px solid var(--lb-petal) !important;
+}
+.skin-yellow-light .sidebar-menu > li {
+  margin: 3px 10px;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 999px;
+}
+.skin-yellow-light .sidebar-menu > li > a {
+  color: var(--lb-plum) !important;
+  font-family: var(--lb-body);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 9px 16px;
+  border: 0 !important;
+  border-radius: 999px;
+  background: transparent !important;
+  transition: background-color .12s ease;
+}
+.skin-yellow-light .sidebar-menu > li > a > .fa { color: var(--lb-link); width: 22px; margin-right: 4px; }
+.skin-yellow-light .sidebar-menu > li:hover > a,
+.skin-yellow-light .sidebar-menu > li > a:focus { background: var(--lb-petal) !important; color: var(--lb-plum) !important; }
+
+/* The page you are on: the LMS script tags it li.li-highlight (the Dashboard li is also hard-coded .active) */
+.skin-yellow-light .sidebar-menu > li.li-highlight,
+.skin-yellow-light .sidebar-menu > li.active {
+  background: var(--lb-blossom) !important;
+  background-image: none !important;
+}
+.skin-yellow-light .sidebar-menu:has(> li.li-highlight) > li.active:not(.li-highlight) { background: transparent !important; }
+.skin-yellow-light .sidebar-menu > li.li-highlight > a,
+.skin-yellow-light .sidebar-menu > li.active > a { background: transparent !important; }
+
+/* Mini (collapsed) side bar keeps AdminLTE's flyout geometry */
+@media (min-width: 768px) {
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li { margin: 3px 0; border-radius: 0; }
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li > a { border-radius: 0; padding: 9px 5px 9px 15px; }
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span:not(.pull-right) {
+    background: var(--lb-petal) !important;
+    color: var(--lb-plum) !important;
+  }
+}
+
+/* ---------- Page heading ---------- */
+.skin-yellow-light .content-wrapper .content-header { padding: 20px 15px 0; background: transparent !important; }
+.content-header > h1,
+.content-header > h1.bg-gray {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.15;
+  color: var(--lb-plum);
+}
+.content-header > h1 small { color: var(--lb-ink-soft); font-family: var(--lb-body); font-weight: 700; }
+.content-header::after {
+  content: "";
+  display: block;
+  margin-top: 16px;
+  border-bottom: 3px dotted var(--lb-blossom);
+}
+
+/* ---------- Boxes (AdminLTE's panels) ---------- */
+.skin-yellow-light .box,
+.skin-yellow-light .box[class*="box-"] {
+  background: var(--lb-sheet) !important;
+  border: 2px solid var(--lb-blossom) !important;
+  border-radius: 22px 22px 22px 6px !important;
+  margin-bottom: 20px;
+}
+html:has(.main-sidebar) .box { background: rgba(255, 248, 249, .88) !important; }
+.skin-yellow-light .box .box-header {
+  background: var(--lb-blossom) !important;
+  background-image: none !important;
+  color: var(--lb-plum) !important;
+  border: 0 !important;
+  border-radius: 20px 20px 0 0 !important;
+  margin: 0 !important;
+  padding: 12px 20px !important;
+}
+.box-header .box-title {
+  font-family: var(--lb-display) !important;
+  font-weight: 600;
+  font-size: 19px;
+  color: var(--lb-plum) !important;
+}
+.box-header [class*="col-"] > .box-title { line-height: 42px; }
+.box-header .col-lg-8 > .col-xs-1 { width: auto !important; padding-top: 10px; font-weight: 700; color: var(--lb-plum); }
+.box-header .form-control { border-color: var(--lb-plum) !important; }
+.box-header .btn-box-tool { color: var(--lb-plum) !important; }
+.skin-yellow-light .box .box-footer {
+  background: var(--lb-wash) !important;
+  border-top: 2px dotted var(--lb-blossom) !important;
+  border-radius: 0 0 22px 6px;
+}
+
+.nav-tabs-custom {
+  background: var(--lb-sheet) !important;
+  border: 2px solid var(--lb-blossom);
+  border-radius: 22px 22px 22px 6px;
+  overflow: hidden;
+}
+.nav-tabs-custom > .nav-tabs { border-bottom: 2px dotted var(--lb-blossom) !important; padding: 8px 8px 0; margin: 0; }
+.nav-tabs-custom > .nav-tabs > li { border-top: 0 !important; margin-bottom: 6px; }
+.nav-tabs-custom > .nav-tabs > li > a { color: var(--lb-plum) !important; }
+.nav-tabs-custom > .nav-tabs > li.active > a,
+.nav-tabs-custom > .nav-tabs > li.active > a:hover { background: var(--lb-blossom) !important; }
+.nav-tabs-custom > .tab-content { background: transparent; }
+
+.info-box, .small-box {
+  background: var(--lb-sheet) !important;
+  color: var(--lb-plum) !important;
+  border: 2px solid var(--lb-blossom);
+  border-radius: 18px 18px 18px 6px;
+  overflow: hidden;
+}
+.small-box h3, .small-box p { color: var(--lb-plum); }
+.small-box > .small-box-footer { background: var(--lb-petal) !important; color: var(--lb-plum) !important; }
+.info-box-icon { background: var(--lb-blossom) !important; color: var(--lb-plum) !important; }
+
+/* ---------- Tables ---------- */
+.table > tbody > tr > th {
+  background: var(--lb-wash) !important;
+  color: var(--lb-plum);
+  font-weight: 800;
+  border-top: 1px dashed var(--lb-orchid) !important;
+}
+.table > tbody > tr:first-child > th,
+.table > thead > tr > th {
+  background: var(--lb-petal) !important;
+  border-top: 0 !important;
+  border-bottom: 2px solid var(--lb-plum) !important;
+  font-size: 13.5px;
+}
+.box-body .table { margin-bottom: 0; }
+.table-hover > tbody > tr:hover > td { background: var(--lb-wash) !important; }
+
+.dataTables_wrapper .dataTables_filter input,
+.dataTables_wrapper .dataTables_length select {
+  background: #fff;
+  color: var(--lb-plum);
+  border: 2px solid var(--lb-lilac);
+  border-radius: 12px;
+  padding: 4px 10px;
+}
+.dataTables_wrapper .dataTables_info { color: var(--lb-ink-soft); }
+
+/* ---------- Buttons: AdminLTE's flat/sized variants ---------- */
+.btn-flat { border-radius: 999px !important; }
+.btn-sm, .btn-group-sm > .btn { padding: 5px 14px; font-size: 13px; }
+.btn-xs, .btn-group-xs > .btn { padding: 2px 10px; font-size: 12px; }
+.btn-lg { padding: 10px 26px; }
+
+/* ---------- Labels, alerts, callouts ---------- */
+.label, .badge { border-radius: 999px; }
+.label.label-default { background: var(--lb-lilac) !important; color: var(--lb-plum) !important; }
+.label.label-primary { background: #6f64a3 !important; color: #fff !important; }
+.label.label-success { background: #e3f2e6 !important; color: #1f5130 !important; border: 1.5px solid #2f7d4a; }
+.label.label-warning { background: #fff0d6 !important; color: #5a3f00 !important; border: 1.5px solid #a97a10; }
+.label.label-danger  { background: #fde0e4 !important; color: #6b1230 !important; border: 1.5px solid var(--lb-danger); }
+.label.label-info    { background: #ece6f5 !important; color: var(--lb-plum) !important; border: 1.5px solid var(--lb-lilac); }
+
+.alert.alert-success { background: #e3f2e6 !important; border-color: #7fbf91 !important; color: #1f5130 !important; }
+.alert.alert-info    { background: #ece6f5 !important; border-color: var(--lb-lilac) !important; color: var(--lb-plum) !important; }
+.alert.alert-warning { background: #fff0d6 !important; border-color: #e0b25a !important; color: #5a3f00 !important; }
+.alert.alert-danger, .alert.alert-error { background: #fde0e4 !important; border-color: #c0395a !important; color: #6b1230 !important; }
+.alert .close { color: var(--lb-plum) !important; opacity: .7; text-shadow: none; }
+.alert a { color: var(--lb-link) !important; }
+
+.callout {
+  background: #fff !important;
+  color: var(--lb-plum) !important;
+  border: 0 !important;
+  border-left: 5px solid var(--lb-orchid) !important;
+  border-radius: 4px 16px 16px 4px !important;
+}
+.callout.callout-info    { border-left-color: var(--lb-peri) !important; }
+.callout.callout-success { border-left-color: #7fbf91 !important; }
+.callout.callout-warning { border-left-color: #e0b25a !important; }
+.callout.callout-danger  { border-left-color: var(--lb-danger) !important; }
+.callout h4, .callout p { color: var(--lb-plum) !important; }
+
+/* ---------- Sign-in (AdminLTE login box) ---------- */
+.login-page, .register-page { background: transparent !important; }
+.login-logo a, .register-logo a { color: var(--lb-plum) !important; font-family: var(--lb-display); }
+.login-box-body, .register-box-body {
+  background: var(--lb-sheet) !important;
+  color: var(--lb-plum);
+  border: 2px solid var(--lb-blossom);
+  border-radius: 22px 22px 22px 6px;
+  padding: 24px;
+}
+
+/* ---------- Footer ---------- */
+.skin-yellow-light .main-footer {
+  background: var(--lb-plum) !important;
+  color: var(--lb-petal) !important;
+  border: 0 !important;
+  font-weight: 600;
+}
+.skin-yellow-light .main-footer a { color: var(--lb-blossom) !important; }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 767px) {
+  .main-header .navbar h4 { font-size: 16px !important; margin: 14px 0; }
+  .content-header > h1 { font-size: 26px; }
+  .skin-yellow-light .sidebar-menu > li { margin: 3px 10px; }
+}
