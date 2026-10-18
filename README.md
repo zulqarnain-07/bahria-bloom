@@ -6,7 +6,7 @@
 Give Bahria University's CMS a fresh new look with **Bahria Bloom**.
 
 <p align="center">
-  <a href="https://github.com/user-attachments/files/33603685/bahria-bloom.1.zip">
+  <a href="https://github.com/user-attachments/files/33616551/bahria-bloom.zip">
     <img src="https://img.shields.io/badge/⬇_Install-Bahria_Bloom-ec4899?style=for-the-badge" alt="Install Bahria Bloom">
   </a>
 </p>
